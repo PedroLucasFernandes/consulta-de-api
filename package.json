@@ -12,5 +12,12 @@
   },
   "scripts": {
     "dev": "nodemon app.js"
-  }
+  },
+  "name": "consulta-de-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
