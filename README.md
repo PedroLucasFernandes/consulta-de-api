@@ -1,7 +1,5 @@
 # OMDB Movie Search
 
-![OMDB Movie Search]
-
 ## Descrição
 
 Este é um projeto de busca de filmes que utiliza a API OMDB para recuperar informações sobre filmes. Ele permite que os usuários digitem o título de um filme e vejam os resultados da busca.
@@ -38,8 +36,15 @@ Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE.md para mais detalhes.
 
 ## Autores:
+Pedro Lucas Fernandes Ferreira
+
 Robson Alexander Alves
-Vitor
-Pedro
+
+Vitor Costansi do Nascimento
+
+Vitor Gabriel de Souza Andrade
+
+Wellington Yago Gouvea
+
 
 
