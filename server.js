@@ -1,23 +1,40 @@
 const express = require('express');
+const fetch = require('node-fetch');
+
 const app = express();
-const axios = require('axios');
+const port = 3000; // Ou qualquer outra porta que desejar
 
-const PORT = 3000;
+const apiKey = process.env.OMDB_API_KEY; // A chave de API será obtida de uma variável de ambiente
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
 });
 
-const OMDB_API_KEY = 'f5368ccf';
+app.get('/search', (req, res) => {
+    const searchTerm = req.query.term;
 
-app.get('/api/movie/:title', async (req, res) => {
-    try {
-        const { title } = req.params;
-        const response = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${title}`);
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao acessar a API do OMDB' });
+    if (!searchTerm) {
+        return res.status(400).json({ error: 'Missing search term' });
     }
+
+    // Fazendo a solicitação para a API do OMDB
+    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchTerm)}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.Error) {
+                res.status(404).json({ error: 'Movie not found' });
+            } else {
+                res.json(data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            res.status(500).json({ error: 'Something went wrong' });
+        });
 });
 
-
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
