@@ -1,9 +1,8 @@
 function searchMovies() {
-    const apiKey = '[f5368ccf]';//CHAVE CRIADA PELO VITOR
     const searchTerm = document.getElementById('searchInput').value;
 
     // Making the API request
-    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}`)
+    fetch(`/search?term=${encodeURIComponent(searchTerm)}`)
         .then(response => response.json())
         .then(data => displayResults(data.Search))
         .catch(error => console.error('Error:', error));
@@ -17,6 +16,7 @@ function displayResults(movies) {
         movies.forEach(movie => {
             const movieTitle = movie.Title;
             const movieYear = movie.Year;
+            
             const moviePoster = movie.Poster;
 
             const movieElement = document.createElement('div');
@@ -31,5 +31,3 @@ function displayResults(movies) {
         searchResults.innerHTML = '<p>No results found.</p>';
     }
 }
-
-  
