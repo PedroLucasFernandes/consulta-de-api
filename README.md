@@ -16,10 +16,10 @@ Este é um projeto de busca de filmes que utiliza a API OMDB para recuperar info
 
 ### 1. Clone o repositório:
 
-```bash
+```
 git clone https://github.com/seu-usuario/consulta-de-api.git
 cd consulta-de-api
-
+```
 ### 2. Instale as dependências:
 npm install
 
