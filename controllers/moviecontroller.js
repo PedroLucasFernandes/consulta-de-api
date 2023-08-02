@@ -1,32 +1,35 @@
 const axios = require('axios');
-const Movie = require('../models/movie');
+const { Movie } = require('../models/movie');
+const apiKey = '2e9642f6';
+const baseApiUrl = 'http://www.omdbapi.com/?';
+
 
 async function getMovies(movieName) {
 
-    if (!movieName) {
-    
-    
-        const apiKey = '2e9642f6';
-        const apiUrl = `http://www.omdbapi.com/?s=${encodeURIComponent(movieName)}&apikey=${apiKey}`;
+    if (movieName) {
+        let apiUrl = `${baseApiUrl}s=${encodeURIComponent(movieName)}&apikey=${apiKey}`;
         const response = await axios.get(apiUrl);
-        const movieList = response.data.map((movie) => {
-            const { title,posterUrl, movieId, movieDetails } = movie;
-            return new Movie( title,posterUrl, movieId, movieDetails );
+        const movieList = response.data['Search'].map((movie) => {
+            const { Title, Poster, imdbID, } = movie;
+            return new Movie(Title, Poster, imdbID);
         });
         console.log(movieList);
         return movieList;
-      }
+    }
 
 }
 
-module.exports = getMovies;
+async function getMovieDetails(movieId) {
+    let apiUrl = `${baseApiUrl}i=${encodeURIComponent(movieId)}&apikey=${apiKey}`;
+    const response = await axios.get(apiUrl);
 
-// async function getBreedData(breed) {
-//     let apiUrl = baseApiUrl + 'search?q=' + breed
-//     let response = await axios.get(apiUrl)
-//     const breeds = response.data.map((breedData) => {
-//         const { id, name, temperament, origin, weight, height, life_span, reference_image_id } = breedData
-//         return new Breed(id, name, temperament, origin, weight, height, life_span, reference_image_id)
-//     })
-//     return breeds
-// }
+    const {
+        Title, Poster, imdbID, Year, Plot, Genre, Director
+    } = response.data;
+
+    const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
+    console.log(movieWithDetails);
+    return movieWithDetails;
+}
+
+module.exports = { getMovies, getMovieDetails };

@@ -1,4 +1,4 @@
-const getMovies = require('./controllers/moviecontroller');
+const {getMovies, getMovieDetails} = require('./controllers/moviecontroller');
 
-getMovies('batman');
+getMovieDetails('tt0372784');
 

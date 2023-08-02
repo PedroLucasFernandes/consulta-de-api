@@ -1,16 +1,8 @@
 class Movie {
-    constructor(title,posterUrl, movieId, movieDetails){
-     this.title = title;
-     this.movieId = movieId;
-     this.posterUrl = posterUrl;
-     this.movieDetails = movieDetails;
-    }
-
-}
-
-
-class MovieDetails{
-    constructor(year, plot, genre, director){
+    constructor(title, posterUrl, movieId, year = '', plot = '', genre = '', director = '') {
+        this.title = title;
+        this.movieId = movieId;
+        this.posterUrl = posterUrl;
         this.year = year;
         this.plot = plot;
         this.genre = genre;
@@ -19,4 +11,9 @@ class MovieDetails{
 }
 
 
-module.exports = { Movie, MovieDetails };
+
+
+
+module.exports = { Movie };
+
+
