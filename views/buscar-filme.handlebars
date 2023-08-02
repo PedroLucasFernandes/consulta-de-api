@@ -4,23 +4,10 @@
 </form>
 
 
-{{!-- <div class="list">
-    {{#each movie}}
-    <a href="/details/{{ imdbID }}">
-        <div class="item">
-
-            <img src="{{Poster}}" />
-            <h2>{{Title}}</h2>
-
-        </div>
-        {{/each}}
-    </a>
-</div> --}}
-
 <div class="list">
     {{#each movie}}
     <div class="item">
-        <a href="/details/{{imdbID}}">
+        <a href="/details/{{movieId}}">
             <img src="{{posterUrl}}" />
         </a>
         <h2>{{title}}</h2>
