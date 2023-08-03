@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { Movie } = require('../models/movie');
-const apiKey = '2e9642f6';
+const apiKey = process.env.OMDB_API_KEY;
 const baseApiUrl = 'http://www.omdbapi.com/?';
 
 
