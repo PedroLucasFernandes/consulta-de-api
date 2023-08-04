@@ -24,10 +24,14 @@ async function getMovieDetails(movieId) {
     let apiUrl = `${baseApiUrl}i=${encodeURIComponent(movieId)}&apikey=${apiKey}`;
     const response = await axios.get(apiUrl);
 
-    const {
+    let {
         Title, Poster, imdbID, Year, Plot, Genre, Director
     } = response.data;
+    if (Poster === 'N/A') {
+        Poster = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+    }
 
+    
     const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
     return movieWithDetails;
 }
