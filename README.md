@@ -40,7 +40,6 @@ views/
 ├─ fetch-movie.handlebars
 ├─ initial-page.handlebars
 ├─ movie-details.handlebars
-.env
 .env.exemple
 .eslintrc.js
 index.js
@@ -49,7 +48,17 @@ package.json
 .gitignore
 README.md
 ```
-### Explicando as funções
+### Construção
+
+*Models*: É o layer responsável pela definição das entidades do projeto, que neste caso é a classe ``Movie``. Pode-se observar que foi definido na classe que alguns atributos são opcionais, isso ocorre devido à logica desenvolvida na para o programa, uma vez que é utilizado duas formas de consulta à API, uma que retorna uma lista de filmes com cada filme tendo apenas alguns atributos básicos e outra que retorna um filme individualmente mas com muito mais detalhes.
+
+*controllers*: É o layer responsável pelo gerenciamento da lógica do programa, onde encontra-se as funções de consulta à API escolhida, fazendo a desserialização da resposta obtida (Json). Há duas funções no controller, a ``getMovies`` responsável pela obtenção da lista de filmes com base no nome informado pelo usuário e a função ``getMovieDetails`` responsável por buscar os detalhes de um filme específico por meio do ID do mesmo.
+
+*Views*: É o layer responsável pela interface do usuário, onde encontra-se as páginas da aplicação web.
+
+*Routes*: è o layer onde se define as rotas da aplicação.
+
+*.env.exemple*: Arquivo responsável pela representação das informações sensíveis da aplicação, como a chave da API utilizada.
 
 ### Como utilizar o sistema
 Ao iniciar o servidor utilizando o comando ``npm run dev`` no terminal, o link http://localhost:3000 será disponibilizado, clique para acessar a WEB.
