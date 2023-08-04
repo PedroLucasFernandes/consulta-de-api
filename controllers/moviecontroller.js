@@ -16,7 +16,6 @@ async function getMovies(movieName) {
         console.log(movieList);
         return movieList;
     }
-
 }
 
 async function getMovieDetails(movieId) {

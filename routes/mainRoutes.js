@@ -3,7 +3,6 @@ const router = express.Router();
 const { getMovies, getMovieDetails } = require('../controllers/moviecontroller');
 
 
-
 router.get('/', (req, res) => {
     res.render('initial');
 });
