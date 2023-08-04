@@ -1,5 +1,5 @@
-<form action="/buscar-filme" method="post">
-    <input id="movieNameInput" name="pesquisa" placeholder="movie name">
+<form action="/fetch-movie" method="POST">
+    <input id="movieNameInput" name="search" placeholder="movie name">
     <button type="submit">Pesquisar</button>
 </form>
 
@@ -7,7 +7,7 @@
 <div class="list">
     {{#each movie}}
     <div class="item">
-        <a href="/details/{{movieId}}">
+        <a href="/movie-details/{{movieId}}">
             <img src="{{posterUrl}}" />
         </a>
         <h2>{{title}}</h2>
