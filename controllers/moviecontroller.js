@@ -13,7 +13,6 @@ async function getMovies(movieName) {
             const { Title, Poster, imdbID, } = movie;
             return new Movie(Title, Poster, imdbID);
         });
-        console.log(movieList);
         return movieList;
     }
 
@@ -28,7 +27,6 @@ async function getMovieDetails(movieId) {
     } = response.data;
 
     const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
-    console.log(movieWithDetails);
     return movieWithDetails;
 }
 
