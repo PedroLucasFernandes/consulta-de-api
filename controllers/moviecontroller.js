@@ -30,6 +30,8 @@ async function getMovieDetails(movieId) {
     const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
     console.log(movieWithDetails);
     return movieWithDetails;
+} catch(error){
+    return null;
+}   
 }
-
 module.exports = { getMovies, getMovieDetails };
