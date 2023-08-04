@@ -4,24 +4,23 @@ const { getMovies, getMovieDetails } = require('../controllers/moviecontroller')
 
 
 router.get('/', (req, res) => {
-    res.render('initial');
+    res.render('initial-page');
 });
 
-router.post('/buscar-filme', async (req, res) => {
-    const { pesquisa } = req.body;
-    let movieList = await getMovies(pesquisa);
+router.post('/fetch-movie', async (req, res) => {
+    const { search } = req.body;
+    let movieList = await getMovies(search);
     
 
-    return res.render('buscar-filme', { movie: movieList });
+    return res.render('fetch-movie', { movie: movieList });
 
 });
 
-router.get('/details/:movieId', async (req, res) => {
+router.get('/movie-details/:movieId', async (req, res) => {
     const { movieId } = req.params;
-    console.log(movieId);
     let movieDetails = await getMovieDetails(movieId);
     
-    return res.render('details', {movie: movieDetails} );
+    return res.render('movie-details', {movie: movieDetails} );
   });
 
 module.exports = router;
