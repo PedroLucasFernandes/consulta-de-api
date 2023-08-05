@@ -4,7 +4,9 @@ const { getMovies, getMovieDetails } = require('../controllers/moviecontroller')
 
 
 router.get('/', (req, res) => {
-    res.render('initial-page');
+    res.render('initial-page', {
+        style: 'style.css'
+    });
 });
 
 router.post('/fetch-movie', async (req, res) => {
@@ -12,7 +14,10 @@ router.post('/fetch-movie', async (req, res) => {
     let movieList = await getMovies(search);
     
 
-    return res.render('fetch-movie', { movie: movieList });
+    return res.render('fetch-movie', { 
+        movie: movieList,
+        style: 'style.css'
+    });
 
 });
 
@@ -20,7 +25,10 @@ router.get('/movie-details/:movieId', async (req, res) => {
     const { movieId } = req.params;
     let movieDetails = await getMovieDetails(movieId);
     
-    return res.render('movie-details', {movie: movieDetails} );
+    return res.render('movie-details', {
+        movie: movieDetails,
+        style: 'style.css'
+    } );
   });
 
 module.exports = router;
