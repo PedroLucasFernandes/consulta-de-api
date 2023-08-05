@@ -6,7 +6,6 @@ const baseApiUrl = 'http://www.omdbapi.com/?';
 
 async function getMovies(movieName) {
     try {
-        if (movieName) {
             let apiUrl = `${baseApiUrl}s=${encodeURIComponent(movieName)}&apikey=${apiKey}`;
             const response = await axios.get(apiUrl);
             const movieList = response.data['Search'].map((movie) => {
@@ -18,8 +17,7 @@ async function getMovies(movieName) {
                 return new Movie(Title, Poster, imdbID);
             });
             return movieList;
-
-        }
+            
     } catch (error) {
         console.error('Error while getting the list of movies:', error.message);
 
