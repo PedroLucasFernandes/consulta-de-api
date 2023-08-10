@@ -1,0 +1,29 @@
+<form action="/buscar-filme" method="post">
+    <input id="movieNameInput" name="pesquisa" placeholder="movie name">
+    <button type="submit">Pesquisar</button>
+</form>
+
+
+{{!-- <div class="list">
+    {{#each movie}}
+    <a href="/details/{{ imdbID }}">
+        <div class="item">
+
+            <img src="{{Poster}}" />
+            <h2>{{Title}}</h2>
+
+        </div>
+        {{/each}}
+    </a>
+</div> --}}
+
+<div class="list">
+    {{#each movie}}
+    <div class="item">
+        <a href="/details/{{imdbID}}">
+            <img src="{{Poster}}" />
+        </a>
+        <h2>{{Title}}</h2>
+    </div>
+    {{/each}}
+</div>
