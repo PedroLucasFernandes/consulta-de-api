@@ -1,6 +1,6 @@
 body {
-    background-color: #6b6867; 
-    margin: 0;
+    background-color: #6b686b; 
+    margin: 10px;
     padding: 0;
 }
 div.list {
@@ -26,3 +26,4 @@ div.item img{
 div.item:hover {
     background-color: rgb(255, 255, 255);
 }
+

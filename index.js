@@ -8,11 +8,11 @@ const routes = require('./routes/mainRoutes');
 
 
 app.use(express.json());
-app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
+app.use(express.static(__dirname + '/public'));
 
 
 app.use('/', routes);
