@@ -1,5 +1,5 @@
 class Movie {
-    constructor(title, posterUrl, movieId, year = '', plot = '', genre = '', director = '') {
+    constructor(title, posterUrl, movieId, year, plot, genre, director) {
         this.title = title;
         this.movieId = movieId;
         this.posterUrl = posterUrl;
