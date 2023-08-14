@@ -1,19 +1,21 @@
 const axios = require('axios');
 const { Movie } = require('../models/movie');
-const apiKey = process.env.OMDB_API_KEY;
+const apiKey = 'sdasd';
 const omdbBaseApiUrl = 'http://www.omdbapi.com/';
 const NoImageURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 const { apiUrlFactory } = require('../utils/apiUrlFactory');
+
+
 
 const omdbApiKeyFactory = apiUrlFactory(omdbBaseApiUrl, apiKey);
 
 
 async function getMoviesListByTitle(movieName) {
     try {
+
         const apiUrl = omdbApiKeyFactory({ s: movieName });
 
         const response = await axios.get(apiUrl);
-
         const movieList = response.data['Search'].map((movie) => {
             let { Title, Poster, imdbID, } = movie;
             const IsThereImage = Poster === 'N/A';
@@ -26,7 +28,8 @@ async function getMoviesListByTitle(movieName) {
         return movieList;
 
     }  catch (error) {
-    return next(error);
+        //...
+ 
     }
 }
 
@@ -34,8 +37,6 @@ async function getMovieDetailsById(movieId) {
     try {
         let apiUrl = omdbApiKeyFactory({ i: movieId });
         const response = await axios.get(apiUrl);
-
-
 
         let { Title, Poster, imdbID, Year, Plot, Genre, Director } = response.data;
         const IsThereImage = Poster === 'N/A';
@@ -46,7 +47,7 @@ async function getMovieDetailsById(movieId) {
         return movieWithDetails;
 
     } catch (error) {
-        console.error('Error while getting movie details:', error.message);
+      //  console.error('Error while getting movie details:', error.message);
 
     }
 }
