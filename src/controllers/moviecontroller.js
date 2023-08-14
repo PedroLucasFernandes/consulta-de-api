@@ -14,28 +14,29 @@ async function getMoviesListByTitle(movieName) {
         const apiUrl = omdbApiKeyFactory({ s: movieName });
 
         const response = await axios.get(apiUrl);
-        if(response.data['Response'] != 'False'){
-            console.log(response);
+      
+        if (response.data['Response'] != 'False') {
             const movieList = response.data['Search'].map((movie) => {
                 let { Title, Poster, imdbID, } = movie;
                 const IsThereImage = Poster === 'N/A';
-                
+
                 if (IsThereImage) {
                     Poster = NoImageURL;
-                
+
                 }
                 return new Movie(Title, Poster, imdbID);
-    
+
             });
-            console.log('dfsdf');
             return movieList;
-        }else{
+        } else {
             throw new APIError(404, 'data not found');
+            
         }
 
-    }  catch (error) {
-        throw new APIError(error.response.status, error);
- 
+    } catch (error) {
+        
+        throw new APIError(error.response.status, error.message);
+
     }
 }
 
@@ -53,8 +54,8 @@ async function getMovieDetailsById(movieId) {
         return movieWithDetails;
 
     } catch (error) {
-        throw new APIError(error.response.status, error);
+        throw new APIError(error.response.status, error.message);
 
     }
 }
-module.exports = { getMoviesListByTitle,  getMovieDetailsById };
+module.exports = { getMoviesListByTitle, getMovieDetailsById };

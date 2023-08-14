@@ -1,7 +1,5 @@
 
 function errorMiddleware(err, req, res, next) { // eslint-disable-line
-  console.error(err.status);
-  
   switch(err.status){
     case 401 :
       res.status(401).json({ error: 'Not authorized' });
@@ -19,7 +17,7 @@ function errorMiddleware(err, req, res, next) { // eslint-disable-line
         res.status(500).json({ error: 'Internal server error'});
       break;
   }
- // res.status(400).json({ error: 'Something went wrong' });
+
 
 }
 module.exports = { errorMiddleware };
