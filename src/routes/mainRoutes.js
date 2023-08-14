@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getMoviesListByTitle, getMovieDetailsById } = require('../controllers/moviecontroller');
-
+const errorHandler = require('../utils/errorMiddleware');
 
 router.get('/', (req, res) => {
     res.render('initial-page', {
@@ -30,4 +30,5 @@ router.get('/movie-details/:movieId', async (req, res) => {
     });
 });
 
+router.use(errorHandler);
 module.exports = router;

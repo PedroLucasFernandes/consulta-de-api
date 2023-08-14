@@ -26,8 +26,7 @@ async function getMoviesListByTitle(movieName) {
         return movieList;
 
     }  catch (error) {
-        console.error('Error while getting the list of movies:', error.message);
-        throw error;
+    return next(error);
     }
 }
 
