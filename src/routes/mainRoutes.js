@@ -3,7 +3,7 @@ const router = express.Router();
 const { getMoviesListByTitle, getMovieDetailsById } = require('../controllers/moviecontroller');
 const { errorMiddleware } = require('../utils/errorMiddleware');
 
-router.use(errorMiddleware);
+
 
 router.get('/', (req, res) => {
     res.render('initial-page', {
@@ -22,7 +22,7 @@ router.post('/fetch-movie', async (req, res, next) => {
         style: 'style.css'
     });}
     catch(error){
-        next(error);
+       next(error);
     }
 
 });
@@ -40,7 +40,6 @@ router.get('/movie-details/:movieId', async (req, res, next) => {
     }
 });
 
-
-
+router.use(errorMiddleware);
 
 module.exports = router;

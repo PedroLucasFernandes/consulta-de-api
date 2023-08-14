@@ -4,9 +4,9 @@ const apiKey = 'sdasd';
 const omdbBaseApiUrl = 'http://www.omdbapi.com/';
 const NoImageURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 const { apiUrlFactory } = require('../utils/apiUrlFactory');
+const { APIError } = require('../models/apiError');
 
 const omdbApiKeyFactory = apiUrlFactory(omdbBaseApiUrl, apiKey);
-
 
 async function getMoviesListByTitle(movieName) {
     try {
@@ -26,8 +26,7 @@ async function getMoviesListByTitle(movieName) {
         return movieList;
 
     }  catch (error) {
-        
-        throw new Error(error);
+        throw new APIError(error.response.status, error);
  
     }
 }
@@ -46,8 +45,7 @@ async function getMovieDetailsById(movieId) {
         return movieWithDetails;
 
     } catch (error) {
-        
-        throw new Error('sla');
+        throw new APIError(error.response.status, error);
 
     }
 }
