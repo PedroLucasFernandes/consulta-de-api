@@ -12,8 +12,9 @@ async function getMoviesListByTitle(movieName) {
     try {
         const apiUrl = omdbApiKeyFactory({ s: movieName });
         const response = await axios.get(apiUrl);
-      
-        if (response.data['Response'] != 'False') {
+        let hasData = response.data['Response'] != 'False';
+        
+        if (hasData) {
             const movieList = response.data['Search'].map((movie) => {
                 let { Title, Poster, imdbID, } = movie;
                 const IsThereImage = Poster === 'N/A';
@@ -44,7 +45,7 @@ async function getMovieDetailsById(movieId) {
         const response = await axios.get(apiUrl);
         let { Title, Poster, imdbID, Year, Plot, Genre, Director } = response.data;
         const IsThereImage = Poster === 'N/A';
-        
+
         if (IsThereImage) {
             Poster = NoImageURL;
         }
