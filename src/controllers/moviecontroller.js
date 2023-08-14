@@ -13,9 +13,6 @@ async function getMoviesListByTitle(movieName) {
         const apiUrl = omdbApiKeyFactory({ s: movieName });
 
         const response = await axios.get(apiUrl);
-        if (!response.data['Search']) {
-            throw new Error('No movies found for the given title.');//Se não encontrar nenhum filme, retorna erro específico
-        }
 
         const movieList = response.data['Search'].map((movie) => {
             let { Title, Poster, imdbID, } = movie;
@@ -39,9 +36,7 @@ async function getMovieDetailsById(movieId) {
         let apiUrl = omdbApiKeyFactory({ i: movieId });
         const response = await axios.get(apiUrl);
 
-        if (!response.data.Title) {
-            throw new Error('No movie details found for the given ID.');//Se não encontrar nenhum filme, retorna erro específicando que foi por causa da ID 
-        }
+
 
         let { Title, Poster, imdbID, Year, Plot, Genre, Director } = response.data;
         const IsThereImage = Poster === 'N/A';
