@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getMovies, getMovieDetails } = require('../controllers/moviecontroller');
+const { getMoviesListByTitle, getMovieDetailsById } = require('../controllers/moviecontroller');
 
 
 router.get('/', (req, res) => {
@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
 
 router.post('/fetch-movie', async (req, res) => {
     const { search } = req.body;
-    let movieList = await getMovies(search);
-    
-    return res.render('fetch-movie', { 
+    let movieList = await getMoviesListByTitle(search);
+
+    return res.render('fetch-movie', {
         movie: movieList,
         style: 'style.css'
     });
@@ -22,12 +22,12 @@ router.post('/fetch-movie', async (req, res) => {
 
 router.get('/movie-details/:movieId', async (req, res) => {
     const { movieId } = req.params;
-    let movieDetails = await getMovieDetails(movieId);
-    
+    let movieDetails = await getMovieDetailsById(movieId);
+
     return res.render('movie-details', {
         movie: movieDetails,
         style: 'style.css'
-    } );
-  });
+    });
+});
 
 module.exports = router;

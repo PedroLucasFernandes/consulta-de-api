@@ -56,4 +56,4 @@ async function getMovieDetailsById(movieId) {
 
     }
 }
-module.exports = { getMovies: getMoviesListByTitle, getMovieDetails: getMovieDetailsById };
+module.exports = { getMoviesListByTitle,  getMovieDetailsById };
