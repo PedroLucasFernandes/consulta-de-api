@@ -5,8 +5,6 @@ const omdbBaseApiUrl = 'http://www.omdbapi.com/';
 const NoImageURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 const { apiUrlFactory } = require('../utils/apiUrlFactory');
 
-
-
 const omdbApiKeyFactory = apiUrlFactory(omdbBaseApiUrl, apiKey);
 
 
@@ -28,7 +26,8 @@ async function getMoviesListByTitle(movieName) {
         return movieList;
 
     }  catch (error) {
-        //...
+        
+        throw new Error(error);
  
     }
 }
@@ -47,7 +46,8 @@ async function getMovieDetailsById(movieId) {
         return movieWithDetails;
 
     } catch (error) {
-      //  console.error('Error while getting movie details:', error.message);
+        
+        throw new Error('sla');
 
     }
 }

@@ -1,7 +1,5 @@
-function errorMiddleware(err, req, res, next) {
+function errorMiddleware(err, req, res, next) { // eslint-disable-line
  
-  console.log('test');
-
-  res.status(500).json({ error: 'Something went wrong' });
+  res.status(400).json({ error: 'Something went wrong' });
 }
 module.exports = { errorMiddleware };
