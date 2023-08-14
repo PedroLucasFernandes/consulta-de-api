@@ -1,16 +1,28 @@
-<form action="/fetch-movie" method="POST">
-    <input id="movieNameInput" name="search" placeholder="movie name">
-    <button type="submit">Pesquisar</button>
-</form>
+<!-- views/fetch-movie.handlebars -->
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="{{ style }}">
+</head>
+<body>
+    <h1>Movie Search</h1>
+    <form action="/fetch-movie" method="POST">
+        <input type="text" name="search" placeholder="Enter movie title">
+        <button type="submit">Search</button>
+    </form>
 
-<div class="list">
-    {{#each movie}}
-    <div class="item">
-        <a href="/movie-details/{{movieId}}">
-            <img src="{{posterUrl}}" />
-        </a>
-        <h2>{{title}}</h2>
-    </div>
-    {{/each}}
-</div>
+    {{#if errorMessage}}
+        <p class="error">{{ errorMessage }}</p> <!-- Exibe a mensagem de erro -->
+    {{else}}
+        <!-- Exibe a lista de filmes normalmente -->
+        {{#each movie}}
+            <div class="movie">
+                <h2>{{ title }}</h2>
+                <img src="{{ posterUrl }}" alt="{{ title }}">
+            </div>
+        {{/each}}
+    {{/if}}
+</body>
+</html>
