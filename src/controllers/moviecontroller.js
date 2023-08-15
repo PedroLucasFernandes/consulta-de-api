@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { Movie } = require('../models/movie');
-const { apiUrlFactory } = require('../utils/apiUrlFactory');
 const { APIError } = require('../utils/apiError');
+const { apiUrlFactory } = require('../utils/apiUrlFactory');
 const apiKey = process.env.OMDB_API_KEY;
 const NoImagePath = '/images/No-Image.jpg';
 const omdbBaseApiUrl = 'http://www.omdbapi.com/';
@@ -12,7 +12,7 @@ async function getMoviesListByTitle(movieName) {
     try {
         const apiUrl = omdbApiKeyFactory({ s: movieName });
         const response = await axios.get(apiUrl);
-        let hasData = response.data['Response'] != 'False';
+        let hasData = response.data['Response'] === 'True';
 
         if (hasData) {
             const movieList = response.data['Search'].map((movie) => {
@@ -29,7 +29,7 @@ async function getMoviesListByTitle(movieName) {
 
         } else {
             throw new APIError(404, 'data not found');
-            
+
         }
 
     } catch (error) {
@@ -42,15 +42,22 @@ async function getMovieDetailsById(movieId) {
     try {
         let apiUrl = omdbApiKeyFactory({ i: movieId });
         const response = await axios.get(apiUrl);
-        let { Title, Poster, imdbID, Year, Plot, Genre, Director } = response.data;
-        const IsThereImage = Poster === 'N/A';
+        let hasData = response.data['Response'] === 'True';
 
-        if (IsThereImage) {
-            Poster = NoImagePath;
+        if (hasData) {
+            let { Title, Poster, imdbID, Year, Plot, Genre, Director } = response.data;
+            const IsThereImage = Poster === 'N/A';
+
+            if (IsThereImage) {
+                Poster = NoImagePath;
+            }
+            const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
+
+            return movieWithDetails;
+        } else {
+            throw new APIError(404, 'data not found');
+
         }
-        const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
-        
-        return movieWithDetails;
 
     } catch (error) {
         throw new APIError(error.response.status, error.message);
