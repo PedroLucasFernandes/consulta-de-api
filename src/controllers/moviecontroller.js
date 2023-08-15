@@ -30,9 +30,9 @@ async function fetchApiData(apiUrl) {
 async function getMoviesListByTitle(movieName) {
     const apiUrl = omdbApiKeyFactory({ s: movieName });
     const response = await fetchApiData(apiUrl);
-
-    return response['Search'].map(movieDetails => Movie.instanceMovieFromApiResponse(movieDetails));
-
+    let movieList = response['Search'].map(movieDetails => Movie.instanceMovieFromApiResponse(movieDetails));
+   
+    return movieList;
 }
 
 async function getMovieDetailsById(movieId) {
