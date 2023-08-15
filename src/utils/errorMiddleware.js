@@ -1,4 +1,3 @@
-
 function errorMiddleware(err, req, res, next) { // eslint-disable-line
   switch (err.status) {
     case 401:
