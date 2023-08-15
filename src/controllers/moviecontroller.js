@@ -3,7 +3,7 @@ const { Movie } = require('../models/movie');
 const { apiUrlFactory } = require('../utils/apiUrlFactory');
 const { APIError } = require('../utils/apiError');
 const apiKey = process.env.OMDB_API_KEY;
-const NoImageURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+const NoImagePath = 'images/No-Image.jpg';
 const omdbBaseApiUrl = 'http://www.omdbapi.com/';
 
 const omdbApiKeyFactory = apiUrlFactory(omdbBaseApiUrl, apiKey);
@@ -20,8 +20,7 @@ async function getMoviesListByTitle(movieName) {
                 const IsThereImage = Poster === 'N/A';
 
                 if (IsThereImage) {
-                    Poster = NoImageURL;
-
+                    Poster = NoImagePath;
                 }
                 return new Movie(Title, Poster, imdbID);
 
@@ -47,9 +46,10 @@ async function getMovieDetailsById(movieId) {
         const IsThereImage = Poster === 'N/A';
 
         if (IsThereImage) {
-            Poster = NoImageURL;
+            Poster = NoImagePath;
         }
         const movieWithDetails = new Movie(Title, Poster, imdbID, Year, Plot, Genre, Director);
+        
         return movieWithDetails;
 
     } catch (error) {
