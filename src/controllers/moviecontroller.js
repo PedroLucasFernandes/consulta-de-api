@@ -28,7 +28,7 @@ async function getMoviesListByTitle(movieName) {
             return movieList;
 
         } else {
-            throw new APIError(404, 'data not found');
+            throw new APIError(404, response.data['Error']);
 
         }
 
@@ -55,7 +55,7 @@ async function getMovieDetailsById(movieId) {
 
             return movieWithDetails;
         } else {
-            throw new APIError(404, 'data not found');
+            throw new APIError(404, response.data['Error'] );
 
         }
 
