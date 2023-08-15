@@ -3,7 +3,7 @@ const { Movie } = require('../models/movie');
 const { apiUrlFactory } = require('../utils/apiUrlFactory');
 const { APIError } = require('../utils/apiError');
 const apiKey = process.env.OMDB_API_KEY;
-const NoImagePath = 'images/No-Image.jpg';
+const NoImagePath = '/images/No-Image.jpg';
 const omdbBaseApiUrl = 'http://www.omdbapi.com/';
 
 const omdbApiKeyFactory = apiUrlFactory(omdbBaseApiUrl, apiKey);
