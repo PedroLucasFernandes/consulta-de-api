@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getMoviesListByTitle, getMovieDetailsById } = require('../controllers/moviecontroller');
 const { errorMiddleware } = require('../utils/errorMiddleware');
+const { getMoviesListByTitle, getMovieDetailsById } = require('../controllers/moviecontroller');
 
 router.get('/', (req, res) => {
     res.render('initial-page', {
@@ -13,7 +13,7 @@ router.post('/fetch-movie', async (req, res, next) => {
     try {
         const { search } = req.body;
         let movieList = await getMoviesListByTitle(search);
-        return res.render('fetch-movie', {
+        return res.status(200).render('fetch-movie', {
             movie: movieList,
             style: 'style.css'
         });
@@ -30,14 +30,14 @@ router.get('/movie-details/:movieId', async (req, res, next) => {
         const { movieId } = req.params;
         let movieDetails = await getMovieDetailsById(movieId);
 
-        return res.render('movie-details', {
+        return res.status(200).render('movie-details', {
             movie: movieDetails,
             style: 'style.css'
         });
     }
     catch (error) {
         next(error);
-        
+
     }
 });
 

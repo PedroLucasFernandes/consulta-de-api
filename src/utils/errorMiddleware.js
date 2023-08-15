@@ -2,22 +2,25 @@
 function errorMiddleware(err, req, res, next) { // eslint-disable-line
   switch (err.status) {
     case 401:
-      res.status(401).json({ error: 'Not authorized' });
+      res.status(401).render('error', { error: `${err.message} (Not authorized)` });
       break;
 
     case 404:
-      res.status(404).json({ error: 'Data not found' });
+      res.status(404).render('error', { error: `${err.message} (Data not found)` });
       break;
 
     case 503:
-      res.status(503).json({ error: 'Service unavailable' });
+      res.status(503).render('error', { error: `${err.message} (Service unavailable)` });
       break;
 
-    case 500:
-      res.status(500).json({ error: 'Internal server error' });
+    case 502:
+      res.status(502).render('error', { error: `${err.message} (Bad gateway)` });
+      break;
+
+    default:
+      res.status(500).render('error', { error: `${err.message} (Unexpected Error)` });
       break;
   }
-
 
 }
 module.exports = { errorMiddleware };

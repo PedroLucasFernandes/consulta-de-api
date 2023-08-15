@@ -13,7 +13,7 @@ async function getMoviesListByTitle(movieName) {
         const apiUrl = omdbApiKeyFactory({ s: movieName });
         const response = await axios.get(apiUrl);
         let hasData = response.data['Response'] != 'False';
-        
+
         if (hasData) {
             const movieList = response.data['Search'].map((movie) => {
                 let { Title, Poster, imdbID, } = movie;
