@@ -8,6 +8,9 @@ function errorMiddleware(err, req, res, next) { // eslint-disable-line
     case 404:
       res.status(404).render('error', { error: `${err.message} (Data not found)` });
       break;
+    case 429:
+      res.status(429).render('error', { error: `${err.message} (Too Many Requests )` });
+      break;
 
     case 503:
       res.status(503).render('error', { error: `${err.message} (Service unavailable)` });
