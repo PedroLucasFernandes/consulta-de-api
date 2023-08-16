@@ -1,11 +1,10 @@
 version: '3'
 services:
   node-app:
-    server:
-      build: .
-      ports:
+    build: .
+    ports:
         - ${APP_PORT_LOCAL}:${APP_PORT_SERVER}
-      command: npm start
-      volumes: 
-        - .:/app
+    command: npm start
+    volumes: 
+      - .:/app
         
