@@ -1,0 +1,12 @@
+version: '3'
+services:
+  node-app:
+    build: .
+    image: sprint3
+    container_name: docker-sprint3
+    ports:
+      "80:3000"
+    command: npm start
+    volumes: 
+      .:/app
+      
