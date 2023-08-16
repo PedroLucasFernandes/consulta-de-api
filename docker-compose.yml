@@ -1,12 +1,11 @@
 version: '3'
 services:
   node-app:
-    build: .
-    image: sprint3
-    container_name: docker-sprint3
-    ports:
-      - ${APP_PORT_LOCAL}:${APP_PORT_SERVER}
-    command: npm start
-    volumes: 
-      - .:/app
-      
+    server:
+      build: .
+      ports:
+        - ${APP_PORT_LOCAL}:${APP_PORT_SERVER}
+      command: npm start
+      volumes: 
+        - .:/app
+        
